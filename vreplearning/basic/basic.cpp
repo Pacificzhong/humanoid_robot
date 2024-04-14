@@ -56,13 +56,13 @@ int main()
     double ankle_pitch_outside_t42[full_montion_time];
     double ankle_pitch_outside[4*(full_montion_time+hip_roll_only_montion_time)];
     //小腿内侧电机
-    /*
     double ankle_pitch_inside_t11[full_montion_time];
     double ankle_pitch_inside_t22[full_montion_time];
     double ankle_pitch_inside_t31[full_montion_time];
     double ankle_pitch_inside_t42[full_montion_time];
     double ankle_pitch_inside[4*(full_montion_time+hip_roll_only_montion_time)];
-*/
+
+
 
     
 
@@ -284,6 +284,9 @@ for(int i=0;i<(full_montion_time);i++)
     ankle_pitch_outside[i+3*full_montion_time+4*hip_roll_only_montion_time]=ankle_pitch_outside_t42[i];
 }
 
+
+
+
 /*
 //构建踝关节内侧电机前后摆在一个循环中的位置数组ankle_pitch_inside
 for(int i=0;i<(full_montion_time);i++)
@@ -321,7 +324,6 @@ for(int i=0;i<(full_montion_time);i++)
     hip_roll_end[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
     }
-
     return 0;
 }
 

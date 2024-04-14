@@ -20,6 +20,7 @@ double triangle_Interpolation(double start, double end, double t)
 
 int main() 
 {
+    double triangle_Interpolation(double start, double end, double t);
     double startValue = 0.0; // 起始值
     double endValue = 100.0; // 终点值
     double t = 0; // 插值参数，范围在[0, 1]之间
@@ -29,8 +30,9 @@ int main()
     double knee_pitch[100];
     for (i=0;i<=100;i++)
     {
-    double hip_Pitch[i] = triangle_Interpolation(startValue, endValue, t);
-    std::cout << "Interpolated value: " << hip_Pitch[i] << std::endl;
+    hip_Pitch[i] = triangle_Interpolation(startValue, endValue, t);
+    std::cout << "Interpolated value: "<< i<<"=" << hip_Pitch[i] << std::endl;
+    t=t+0.01;
     }
     
 

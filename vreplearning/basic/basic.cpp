@@ -34,10 +34,6 @@ int main()
     std::cout << "Interpolated value: "<< i<<"=" << hip_Pitch[i] << std::endl;
     t=t+0.01;
     }
-    
-
-
-
     return 0;
 }
 

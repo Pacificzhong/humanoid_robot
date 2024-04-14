@@ -28,8 +28,8 @@ double triangle_Interpolation(double start, double end, double t)
 
 int main() 
 {
-    int full_montion_time=8000;//在髋关节侧摆从速度0到下一个速度0的过程中，所有的关节都在动的时间长度，以数组长度来表示。注，宏定义不能用来表示数组长度
-    int hip_roll_only_montion_time=2000;//只有髋关节侧摆在动，其他关节都不动的时间，以数组长度来表示。
+    int full_montion_time=80;//在髋关节侧摆从速度0到下一个速度0的过程中，所有的关节都在动的时间长度，以数组长度来表示。注，宏定义不能用来表示数组长度
+    int hip_roll_only_montion_time=20;//只有髋关节侧摆在动，其他关节都不动的时间，以数组长度来表示。
     //定义三个关节在单个运动过程中前后摆位置数组
     //髋关节侧摆（左右同步）
     double hip_roll_begin[full_montion_time+hip_roll_only_montion_time];

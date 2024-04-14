@@ -65,31 +65,30 @@ int main()
     
 
     //计算髋关节侧摆hip_roll的T11-T12段hip_roll_t11_t12
-    startValue=hip_roll_target;
-    endValue = 0.0;// 终点值
-    t=0;//插值参数，范围在[0，1]之间
-    delta=1.0/(full_montion_time+hip_roll_only_montion_time);
- for ( i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+    double startValue=hip_roll_target;
+    double endValue = 0.0;// 终点值
+    double t=0;//插值参数，范围在[0，1]之间
+    double delta=1.0/(full_montion_time+hip_roll_only_montion_time);
+ for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_t11_t12[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
     }
 
     //计算髋关节侧摆hip_roll的T21-T22段hip_roll_t21_t22
- for (i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+ for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_t21_t22[i] = hip_roll_t11_t12[i]-hip_roll_target;
     }
 
     //计算髋关节侧摆hip_roll的T31-T32段hip_roll_t31_t32
- for (i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+ for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_t31_t32[i] = -1.0*hip_roll_t11_t12[i];
     }
 
     //计算髋关节侧摆hip_roll的T41-T42段hip_roll_t41_t42
-
-     for (i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_t41_t42[i] = hip_roll_t31_t32[i]+hip_roll_target;
     }
@@ -99,7 +98,7 @@ int main()
     endValue = hip_pitch_target;// 终点值
     t=0;//插值参数，范围在[0，1]之间
     delta=1.0/(full_montion_time);
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     hip_pitch_t11[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
@@ -110,21 +109,21 @@ int main()
     endValue = 0.0;// 终点值
     t=0;//插值参数，范围在[0，1]之间
     delta=1.0/(full_montion_time);
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     hip_pitch_t22[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
     }
 
     //计算髋关节前后摆hip_pitch的T31段hip_pitch_t31
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     hip_pitch_t31[i] = hip_pitch_t22[i]-hip_pitch_target;
     t=t+delta;
     }
 
     //计算髋关节前后摆hip_pitch的T42段hip_pitch_t42
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     hip_pitch_t42[i] = hip_pitch_t11[i]-hip_pitch_target;
     t=t+delta;
@@ -135,7 +134,7 @@ int main()
     endValue = ankle_pitch_target;// 终点值
     t=0;//插值参数，范围在[0，1]之间
     delta=1.0/(full_montion_time);
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_outside_t11[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
@@ -146,7 +145,7 @@ int main()
     endValue = 0.0;// 终点值
     t=0;//插值参数，范围在[0，1]之间
     delta=1.0/(full_montion_time);
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_outside_t22[i] = triangle_Interpolation(startValue, endValue, t);
     t=t+delta;
@@ -154,7 +153,7 @@ int main()
 
 //计算踝关节前后摆外侧电机ankle_pitch_outside的T31段ankle_pitch_outside_t31
 
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_outside_t31[i] = ankle_pitch_outside_t22[i]-ankle_pitch_target;
     t=t+delta;
@@ -162,7 +161,7 @@ int main()
 
 //计算踝关节前后摆外侧电机ankle_pitch_outside的T42段ankle_pitch_outside_t42
 
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_outside_t42[i] = ankle_pitch_outside_t11[i]-ankle_pitch_target;
     t=t+delta;
@@ -170,7 +169,7 @@ int main()
 
 
 //计算踝关节前后摆内侧电机ankle_pitch_inside的T11段ankle_pitch_inside_t11
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_inside_t11[i] = -1.0*ankle_pitch_outside_t11[i];
     t=t+delta;
@@ -178,7 +177,7 @@ int main()
 
 
 //计算踝关节前后摆内侧电机ankle_pitch_inside的T22段ankle_pitch_inside_t22
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_inside_t22[i] = -1.0*ankle_pitch_outside_t22[i];
     t=t+delta;
@@ -186,24 +185,24 @@ int main()
 
 
 //计算踝关节前后摆内侧电机ankle_pitch_inside的T31段ankle_pitch_inside_t31
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_inside_t31[i] = -1.0*ankle_pitch_outside_t31[i];
     t=t+delta;
     }
 
 //计算踝关节前后摆内侧电机ankle_pitch_inside的T42段ankle_pitch_inside_t42
- for ( i=0;i<(full_montion_time);i++)
+ for (int i=0;i<(full_montion_time);i++)
     {
     ankle_pitch_inside_t42[i] = -1.0*ankle_pitch_outside_t42[i];
     t=t+delta;
     }
 
 //计算髋关节侧摆hip_roll的起始段hip_roll_begin
-    double startValue = 0.0; // 起始值
-    double endValue = hip_roll_target;// 终点绝对值
-    double t=0;//插值参数，范围在[0，1]之间
-    double delta=1.0/(full_montion_time+hip_roll_only_montion_time);
+    startValue = 0.0; // 起始值
+    endValue = hip_roll_target;// 终点绝对值
+    t=0;//插值参数，范围在[0，1]之间
+    delta=1.0/(full_montion_time+hip_roll_only_montion_time);
  for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_begin[i] = triangle_Interpolation(startValue, endValue, t);
@@ -214,106 +213,106 @@ int main()
     }
 
 //构建髋关节侧摆在一个循环中的位置数组
-for(i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+for(int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
 {
     hip_roll[i]=hip_roll_t11_t12[i];
 }
-for(i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+for(int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
 {
     hip_roll[i+(full_montion_time+hip_roll_only_montion_time)]=hip_roll_t21_t22[i];
 }
-for(i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+for(int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
 {
     hip_roll[i+2*(full_montion_time+hip_roll_only_montion_time)]=hip_roll_t31_t32[i];
 }
-for(i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
+for(int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
 {
     hip_roll[i+3*(full_montion_time+hip_roll_only_montion_time)]=hip_roll_t41_t42[i];
 }
 
 //构建髋关节前后摆在一个循环中的位置数组
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     hip_pitch[i]=hip_pitch_t11[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     hip_pitch[i+full_montion_time]=hip_pitch_t11[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     hip_pitch[i+full_montion_time+2*hip_roll_only_montion_time]=hip_pitch_t22[i];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     hip_pitch[i+2*full_montion_time+2*hip_roll_only_montion_time]=hip_pitch_t31[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     hip_pitch[i+3*full_montion_time+2*hip_roll_only_montion_time]=hip_pitch_t31[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     hip_pitch[i+3*full_montion_time+4*hip_roll_only_montion_time]=hip_pitch_t42[i];
 }
 
 //构建踝关节外侧电机前后摆在一个循环中的位置数组ankle_pitch_outside
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_outside[i]=ankle_pitch_outside_t11[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     ankle_pitch_outside[i+full_montion_time]=ankle_pitch_outside_t11[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_outside[i+full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_outside_t22[i];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_outside[i+2*full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_outside_t31[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     ankle_pitch_outside[i+3*full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_outside_t31[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_outside[i+3*full_montion_time+4*hip_roll_only_montion_time]=ankle_pitch_outside_t42[i];
 }
 
 //构建踝关节内侧电机前后摆在一个循环中的位置数组ankle_pitch_inside
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_inside[i]=ankle_pitch_inside_t11[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     ankle_pitch_inside[i+full_montion_time]=ankle_pitch_inside_t11[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_inside[i+full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_inside_t22[i];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_inside[i+2*full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_inside_t31[i];
 }
-for(i=0;i<(2*hip_roll_only_montion_time);i++)
+for(int i=0;i<(2*hip_roll_only_montion_time);i++)
 {
     ankle_pitch_inside[i+3*full_montion_time+2*hip_roll_only_montion_time]=ankle_pitch_inside_t31[full_montion_time-1];
 }
-for(i=0;i<(full_montion_time);i++)
+for(int i=0;i<(full_montion_time);i++)
 {
     ankle_pitch_inside[i+3*full_montion_time+4*hip_roll_only_montion_time]=ankle_pitch_inside_t42[i];
 }
 
 //计算髋关节侧摆hip_roll的结尾段hip_roll_end
-    double startValue = hip_roll_target; // 起始值
-    double endValue = 0.0;// 终点绝对值
-    double t=0;//插值参数，范围在[0，1]之间
-    double delta=1.0/(full_montion_time+hip_roll_only_montion_time);
+    startValue = hip_roll_target; // 起始值
+    endValue = 0.0;// 终点绝对值
+    t=0;//插值参数，范围在[0，1]之间
+    delta=1.0/(full_montion_time+hip_roll_only_montion_time);
  for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_end[i] = triangle_Interpolation(startValue, endValue, t);

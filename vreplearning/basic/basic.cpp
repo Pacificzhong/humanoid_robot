@@ -15,7 +15,7 @@
 #define ankle_pitch_target 100
 
 // 三角函数插值
-double triangle_Interpolation(double start, double end, double t) 
+float triangle_Interpolation(double start, double end, double t) 
 {
     // 将t限制在[0, 1]的范围内
     t = std::fmin(1.0, std::fmax(0.0, t));//返回参数中的最小值和最大值
@@ -28,45 +28,45 @@ double triangle_Interpolation(double start, double end, double t)
 
 int main() 
 {
-    int full_montion_time=80;//在髋关节侧摆从速度0到下一个速度0的过程中，所有的关节都在动的时间长度，以数组长度来表示。注，宏定义不能用来表示数组长度
-    int hip_roll_only_montion_time=20;//只有髋关节侧摆在动，其他关节都不动的时间，以数组长度来表示。
+    int full_montion_time=800;//在髋关节侧摆从速度0到下一个速度0的过程中，所有的关节都在动的时间长度，以数组长度来表示。注，宏定义不能用来表示数组长度
+    int hip_roll_only_montion_time=200;//只有髋关节侧摆在动，其他关节都不动的时间，以数组长度来表示。
     //定义三个关节在单个运动过程中前后摆位置数组
     //髋关节侧摆（左右同步）
-    double hip_roll_begin[full_montion_time+hip_roll_only_montion_time];
-    double hip_roll_t11_t12[full_montion_time+hip_roll_only_montion_time];
-    double hip_roll_t21_t22[full_montion_time+hip_roll_only_montion_time];
-    double hip_roll_t31_t32[full_montion_time+hip_roll_only_montion_time];
-    double hip_roll_t41_t42[full_montion_time+hip_roll_only_montion_time];
-    double hip_roll[4*(full_montion_time+hip_roll_only_montion_time)];
-    double hip_roll_end[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll_begin[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll_t11_t12[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll_t21_t22[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll_t31_t32[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll_t41_t42[full_montion_time+hip_roll_only_montion_time];
+    float hip_roll[4*(full_montion_time+hip_roll_only_montion_time)];
+    float hip_roll_end[full_montion_time+hip_roll_only_montion_time];
 
     //髋关节前后摆(左右同步)
     //左腿
-    double hip_pitch_t11[full_montion_time];
-    double hip_pitch_t22[full_montion_time];
-    double hip_pitch_t31[full_montion_time];
-    double hip_pitch_t42[full_montion_time];
-    double hip_pitch[4*(full_montion_time+hip_roll_only_montion_time)];
+    float hip_pitch_t11[full_montion_time];
+    float hip_pitch_t22[full_montion_time];
+    float hip_pitch_t31[full_montion_time];
+    float hip_pitch_t42[full_montion_time];
+    float hip_pitch[4*(full_montion_time+hip_roll_only_montion_time)];
 
     //踝关节前后摆
     //小腿外侧电机
-    double ankle_pitch_outside_t11[full_montion_time];
-    double ankle_pitch_outside_t22[full_montion_time];
-    double ankle_pitch_outside_t31[full_montion_time];
-    double ankle_pitch_outside_t42[full_montion_time];
-    double ankle_pitch_outside[4*(full_montion_time+hip_roll_only_montion_time)];
+    float ankle_pitch_outside_t11[full_montion_time];
+    float ankle_pitch_outside_t22[full_montion_time];
+    float ankle_pitch_outside_t31[full_montion_time];
+    float ankle_pitch_outside_t42[full_montion_time];
+    float ankle_pitch_outside[4*(full_montion_time+hip_roll_only_montion_time)];
     //小腿内侧电机
-    double ankle_pitch_inside_t11[full_montion_time];
-    double ankle_pitch_inside_t22[full_montion_time];
-    double ankle_pitch_inside_t31[full_montion_time];
-    double ankle_pitch_inside_t42[full_montion_time];
-    double ankle_pitch_inside[4*(full_montion_time+hip_roll_only_montion_time)];
+    float ankle_pitch_inside_t11[full_montion_time];
+    float ankle_pitch_inside_t22[full_montion_time];
+    float ankle_pitch_inside_t31[full_montion_time];
+    float ankle_pitch_inside_t42[full_montion_time];
+    float ankle_pitch_inside[4*(full_montion_time+hip_roll_only_montion_time)];
 
     //计算髋关节侧摆hip_roll的T11-T12段hip_roll_t11_t12
-    double startValue=hip_roll_target;
-    double endValue = 0.0;// 终点值
-    double t=0;//插值参数，范围在[0，1]之间
-    double delta=1.0/(full_montion_time+hip_roll_only_montion_time);
+    float startValue=hip_roll_target;
+    float endValue = 0.0;// 终点值
+    float t=0;//插值参数，范围在[0，1]之间
+    float delta=1.0/(full_montion_time+hip_roll_only_montion_time);
  for (int i=0;i<(full_montion_time+hip_roll_only_montion_time);i++)
     {
     hip_roll_t11_t12[i] = triangle_Interpolation(startValue, endValue, t);

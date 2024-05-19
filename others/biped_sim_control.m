@@ -21,7 +21,6 @@ x_5=x_4+l1*cos(q4);
 y_5=y_4+l1*sin(q4);
 dt=1/20;
 for i=1:1/dt
-
 J=[-l1*sin(q1) -l2*sin(q2) 0 0;...
    -l1*sin(q1) -l2*sin(q2) -l2*sin(q3) -l1*sin(q4);...
    l1*cos(q1) l2*cos(q2) l2*cos(q3) l1*cos(q4)];

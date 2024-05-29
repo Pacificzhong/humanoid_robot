@@ -1,0 +1,84 @@
+
+#ifndef __PLC_H
+#define __PLC_H
+
+#include "stm32f4xx.h"
+#include "motion_control.h"
+#include "Timer.h"
+
+/*---------------------------------------------电机接收数据数组---------------------------------------------------*/
+typedef struct{
+	int16_t LEFTLEG_LINEMOTOR[MOTOR_LINE_RCVDATALEN];
+	int16_t RIGHTLEG_LINEMOTOR[MOTOR_LINE_RCVDATALEN];
+	
+	int16_t LEFTLEG_B1MOTOR_X[MOTOR_KNEE_RCVDATALEN];
+	int16_t LEFTLEG_B1MOTOR_Y[MOTOR_KNEE_RCVDATALEN];
+	int16_t LEFTLEG_B1MOTOR_Z[MOTOR_KNEE_RCVDATALEN];
+	
+	int16_t RIGHTLEG_B1MOTOR_X[MOTOR_KNEE_RCVDATALEN];
+	int16_t RIGHTLEG_B1MOTOR_Y[MOTOR_KNEE_RCVDATALEN];
+	int16_t RIGHTLEG_B1MOTOR_Z[MOTOR_KNEE_RCVDATALEN];
+	
+	int16_t LEFTLEG_A1MOTOR_LEFT[MOTOR_KNEE_RCVDATALEN];
+	int16_t LEFTLEG_A1MOTOR_RIGHT[MOTOR_KNEE_RCVDATALEN];
+	
+	int16_t RIGHTLEG_A1MOTOR_LEFT[MOTOR_KNEE_RCVDATALEN];
+	int16_t RIGHTLEG_A1MOTOR_RIGHT[MOTOR_KNEE_RCVDATALEN];
+} MOTOR_RCVPC_DATA_ALLBUFFER;
+/*---------------------------------------------电机与PC发送数据包-------------------------------------------------*/
+typedef struct{
+	int16_t LEFTLEG_LINEMOTOR[MOTOR_LINE_SENDDATALEN];
+	int16_t RIGHTLEG_LINEMOTOR[MOTOR_LINE_SENDDATALEN];
+	
+	int16_t LEFTLEG_B1MOTOR_X[MOTOR_KNEE_SENDDATALEN];
+	int16_t LEFTLEG_B1MOTOR_Y[MOTOR_KNEE_SENDDATALEN];
+	int16_t LEFTLEG_B1MOTOR_Z[MOTOR_KNEE_SENDDATALEN];
+	
+	int16_t RIGHTLEG_B1MOTOR_X[MOTOR_KNEE_SENDDATALEN];
+	int16_t RIGHTLEG_B1MOTOR_Y[MOTOR_KNEE_SENDDATALEN];
+	int16_t RIGHTLEG_B1MOTOR_Z[MOTOR_KNEE_SENDDATALEN];
+	
+	int16_t LEFTLEG_A1MOTOR_LEFT[MOTOR_KNEE_SENDDATALEN];
+	int16_t LEFTLEG_A1MOTOR_RIGHT[MOTOR_KNEE_SENDDATALEN];
+	
+	int16_t RIGHTLEG_A1MOTOR_LEFT[MOTOR_KNEE_SENDDATALEN];
+	int16_t RIGHTLEG_A1MOTOR_RIGHT[MOTOR_KNEE_SENDDATALEN];
+} MOTOR_SENDPC_DATA_ALLBUFFER;
+
+extern MOTOR_RCVPC_DATA_ALLBUFFER RcvPCBuffer;
+extern MOTOR_SENDPC_DATA_ALLBUFFER SendPCBuffer;
+
+#define MAX_RCV_BUFFER_SIZE					48
+#define MAX_SEND_BUFFER_SIZE				48
+#define PC_RCV_BUFFER_SIZE					17
+
+#define FRAME_ARRIVE						0
+#define	FRAME_NO_ARRIVE						1
+#define FRAME_PROCESS_RDY					0
+#define FRAME_PROCESS_NO_RDY				1
+#define c3P5START							0
+#define c3P5END								1
+
+#define ADDR								0
+#define CMD									1
+#define GROUPH								2
+#define GROUPL								3
+#define DATALENH							4
+#define DATALENL							5
+
+#define	REF_TORQUE_INDEX					0
+#define	REF_W_INDEX							1
+#define	REF_POS_H16_INDEX					2
+#define	REF_POS_L16_INDEX					3
+#define REF_KW_INDEX						4
+#define REF_KP_INDEX						5
+
+#define WRITE_MODE							0
+#define READ_MODE							1
+
+#define UNITREE_MOTOR_BYTE					12
+
+void Comm_PC_MainLoopSchedule(void);
+void PLC_Computer_USART_Configuration(void);
+
+#endif

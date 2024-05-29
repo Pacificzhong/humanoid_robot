@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "wit_rs485.h": "c",
+        "wit_c_sdk.h": "c",
+        "stm32f4xx.h": "c"
+    }
+}
